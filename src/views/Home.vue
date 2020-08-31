@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <b-container>
+      <b-row class="Cardrow">
+        <JobCard />
+        <JobCard />
+        <JobCard />
+        <JobCard />
+        <JobCard />
+        <JobCard />
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import JobCard from "../components/JobCard";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
-  }
+    JobCard,
+  },
 };
 </script>
+<style lang="scss" scoped>
+.Cardrow {
+  margin: 50px 0 30px 0;
+  justify-content: center;
+  align-content: center;
+}
+</style>
