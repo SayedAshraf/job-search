@@ -2,8 +2,8 @@
   <div class="job-card">
     <b-col>
       <b-card
-        title=" This is a Card Title"
-        img-src="https://picsum.photos/600/300/?image=25"
+        :title="data.id + '-' + data.title"
+        :img-src="data.image"
         img-alt="Image"
         img-top
         tag="article"
@@ -12,10 +12,9 @@
         bg-variant="light"
       >
         <b-card-text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {{ data.description }}
         </b-card-text>
-        <b-button href="#" variant="primary">Go somewhere</b-button>
+        <b-button href="#" variant="primary">Apply</b-button>
       </b-card>
     </b-col>
   </div>
@@ -25,7 +24,9 @@
 export default {
   name: "JobCard",
   props: {
-    msg: String,
+    data: {
+      required: true,
+    },
   },
 };
 </script>
