@@ -27,6 +27,7 @@
 <script>
 // @ is an alias to /src
 import JobCard from "../components/JobCard";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
@@ -35,24 +36,32 @@ export default {
   },
   data() {
     return {
-      jobs: {},
-      dispalyjob: {},
+      // jobs: {},
+      // dispalyjob: {},
+      // rows: 1,
       currentPage: 1,
-      rows: 1,
       perPage: 3,
     };
   },
+  computed: {
+    ...mapGetters(["jobs", "dispalyjob", "rows"]),
+  },
   methods: {
     async fetchData() {
-      const res = await fetch("jobs.json");
-      const val = await res.json();
-      this.jobs = val;
-      this.dispalyjob = val.slice(0, this.perPage);
-      this.rows = this.jobs.length;
+      await this.$store.dispatch("fetchJobs");
+      // const res = await fetch("jobs.json");
+      // const val = await res.json();
+      // this.jobs = val;
+      // this.dispalyjob = val.slice(0, this.perPage);
+      // this.rows = this.jobs.length;
     },
     paginate(currentPage) {
-      const start = (currentPage - 1) * this.perPage;
-      this.dispalyjob = this.jobs.slice(start, start + this.perPage);
+      this.$store.dispatch("pagination", {
+        currentPage,
+        perPage: this.perPage,
+      });
+      // const start = (currentPage - 1) * this.perPage;
+      // this.dispalyjob = this.jobs.slice(start, start + this.perPage);
     },
   },
   mounted() {
