@@ -12,8 +12,13 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-form>
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search">
+        <b-nav-form @submit.prevent="search">
+          <b-form-input
+            size="sm"
+            class="mr-sm-2"
+            placeholder="Search"
+            v-model="searchtext"
+          >
           </b-form-input>
           <b-button size="sm" class="my-2 my-sm-0" type="submit">
             Search
@@ -27,14 +32,16 @@
 <script>
 export default {
   name: "JobNavBar",
-  props: {
-    msg: String,
+  data() {
+    return {
+      searchtext: "",
+    };
+  },
+  methods: {
+    search() {
+      this.$store.dispatch("Search", { text: this.searchtext });
+    },
   },
 };
 </script>
-<style lang="scss" scoped>
-// .router-link-active {
-//   font-weight: bold;
-//   color: black !important;
-// }
-</style>
+<style lang="scss" scoped></style>

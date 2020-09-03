@@ -36,9 +36,6 @@ export default {
   },
   data() {
     return {
-      // jobs: {},
-      // dispalyjob: {},
-      // rows: 1,
       currentPage: 1,
       perPage: 3,
     };
@@ -49,19 +46,12 @@ export default {
   methods: {
     async fetchData() {
       await this.$store.dispatch("fetchJobs");
-      // const res = await fetch("jobs.json");
-      // const val = await res.json();
-      // this.jobs = val;
-      // this.dispalyjob = val.slice(0, this.perPage);
-      // this.rows = this.jobs.length;
     },
     paginate(currentPage) {
       this.$store.dispatch("pagination", {
         currentPage,
         perPage: this.perPage,
       });
-      // const start = (currentPage - 1) * this.perPage;
-      // this.dispalyjob = this.jobs.slice(start, start + this.perPage);
     },
   },
   mounted() {
